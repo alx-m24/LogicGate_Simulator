@@ -88,6 +88,8 @@ void Simulation::update(sf::RenderWindow& window)
 				break;
 			}
 		}
+		viewCenter += sf::Vector2f(lastmousePos - mousePos);
+		zoom(window, false);
 	}
 	// Just released the right mouse btn
 	else if (lastRight) {
@@ -241,7 +243,7 @@ void Simulation::update(sf::RenderWindow& window)
 		nodes[movedNodeIdx]->selected = true;
 		if (SHIFT) {
 			// Clamping position
-			nodes[movedNodeIdx]->position = clampToGrid(nodes[movedNodeIdx]->position, spacing) + sf::Vector2f(spacing, spacing) / 2.0f;
+			nodes[movedNodeIdx]->position = SnapToGrid(nodes[movedNodeIdx]->position, spacing, viewCenter + sf::Vector2f(spacing, spacing) / 2.0f);
 		}
 	}
 #pragma endregion
@@ -252,7 +254,7 @@ void Simulation::update(sf::RenderWindow& window)
 		gates[movedGateIdx]->isSelected = true;
 		if (SHIFT) {
 			// Clamping position
-			gates[movedGateIdx]->position = clampToGrid(gates[movedGateIdx]->position, spacing) + sf::Vector2f(spacing, spacing) / 2.0f;
+			gates[movedGateIdx]->position = SnapToGrid(gates[movedGateIdx]->position, spacing, viewCenter + (sf::Vector2f(spacing, spacing) / 2.0f));
 		}
 	}
 #pragma endregion
@@ -338,27 +340,43 @@ void Simulation::draw(sf::RenderWindow& window)
 	}
 }
 
-void Simulation::zoom(sf::RenderWindow& window)
+void Simulation::zoom(sf::RenderWindow& window, bool followMouse)
 {
 #pragma region Spacing
 	spacing = std::min(window.getSize().x, window.getSize().y) / gridSize;
-	shader.setUniform("spacing", spacing);
 
 	if (gridSize > 20.0f) thickness = 1;
 	else thickness = 2;
 #pragma endregion
 
-	sf::Vector2f viewCenter = mousePos;
-	for (Node* node : nodes) {
-		node->position = (node->position - viewCenter) * oldGridSize / gridSize + viewCenter;
+	if (followMouse) {
+		viewCenter += sf::Vector2f(mousePos);
+
+		for (Node* node : nodes) {
+			node->position = (node->position - (viewCenter - lastviewCenter)) * oldGridSize / gridSize + (viewCenter - lastviewCenter);
+		}
+
+		for (Gate* gate : gates) {
+			gate->position = (gate->position - (viewCenter - lastviewCenter)) * oldGridSize / gridSize + (viewCenter - lastviewCenter);
+			gate->resize(spacing);
+		}
+	}
+	else {
+		for (Node* node : nodes) {
+			node->position = (node->position - (viewCenter - lastviewCenter)) * oldGridSize / gridSize;
+		}
+
+		for (Gate* gate : gates) {
+			gate->position = (gate->position - (viewCenter - lastviewCenter)) * oldGridSize / gridSize;
+			gate->resize(spacing);
+		}
 	}
 
-	for (Gate* gate : gates) {
-		gate->position = (gate->position - viewCenter) * oldGridSize / gridSize + viewCenter;
-		gate->resize(spacing);
-	}
+	shader.setUniform("viewCenter", viewCenter);
+	shader.setUniform("spacing", spacing);
 
 	oldGridSize = gridSize;
+	lastviewCenter = viewCenter;
 }
 
 void Simulation::addGate(std::string gate, sf::RenderWindow& window)

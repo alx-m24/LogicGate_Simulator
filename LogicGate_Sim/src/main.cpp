@@ -9,6 +9,9 @@
 #include "Headers/gui/nfd.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <curl/curl.h>
+
+const std::string currentVersion = "1.2.1";
 
 namespace fs = std::filesystem;
 std::map<sf::Keyboard::Key, bool> keys = std::map<sf::Keyboard::Key, bool>();
@@ -34,6 +37,38 @@ static std::string ShowFileDialog(std::string currentDir)
 	}
 
 	return "";
+}
+
+// Callback function to handle the data received from the server
+size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
+	((std::string*)userp)->append((char*)contents, size * nmemb);
+	return size * nmemb;
+}
+
+static std::string checkUpdates() {
+	CURL* curl;
+	CURLcode res;
+	std::string readBuffer;
+
+	curl_global_init(CURL_GLOBAL_DEFAULT);
+	curl = curl_easy_init();
+
+	if (curl) {
+		curl_easy_setopt(curl, CURLOPT_URL, "https://alx-m24-github-io.pages.dev/LogicGateSim/Updates/latestVersion");
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback); // set callback
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);       // pass string buffer
+
+		res = curl_easy_perform(curl);
+
+		if (res != CURLE_OK)
+			std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
+
+		curl_easy_cleanup(curl);
+	}
+
+	curl_global_cleanup();
+
+	return readBuffer;
 }
 
 int main() {
@@ -65,11 +100,16 @@ int main() {
 	// Initialize ImGui-SFML
 	ImGui::SFML::Init(window);
 	applyStyle();
+
+	checkUpdates();
+
+	std::string newestVersion = checkUpdates();
+	bool newVersion = newestVersion != currentVersion;
 #pragma endregion
 
 #pragma region Objects
 	Simulation simulation(currentDir + "\\src", 100u);
-	simulation.zoom(window);
+	simulation.zoom(window, false);
 #pragma endregion
 
 #pragma region Main loop
@@ -88,10 +128,11 @@ int main() {
 				break;
 			case sf::Event::Resized:
 				window.setView(sf::View(sf::FloatRect(0.0f, 0.0f, static_cast<float>(window.getSize().x), static_cast<float>(window.getSize().y))));
+				simulation.zoom(window, false);
 				break;
 			case sf::Event::MouseWheelScrolled:
 				simulation.gridSize -= event.mouseWheelScroll.delta;
-				simulation.zoom(window);
+				simulation.zoom(window, true);
 				break;
 			case sf::Event::KeyPressed:
 				keys[event.key.code] = true;
@@ -108,6 +149,26 @@ int main() {
 #pragma region Update
 		ImGui::SFML::Update(window, deltaClock.restart());
 		simulation.update(window);
+
+		{
+			if (newVersion) {
+				ImGui::Begin("Update Available", &newVersion);
+
+				ImGui::Text(std::string("New version(" + newestVersion + ") is available for download").c_str());
+
+				ImGui::Text("Release notes:");
+				ImGui::SameLine();
+				ImGui::TextLink("https://alx-m24-github-io.pages.dev/LogicGateSim/Updates/ReleaseNotes.html");
+
+				if (ImGui::Button("Dismiss")) newVersion = false;
+				ImGui::SameLine();
+				if (ImGui::Button("Download")) {
+					ShellExecute(0, 0, L"https://alx-m24-github-io.pages.dev/LogicGateSim/hwapdosjizo07122024-/herfiuh/difoej1j/LogicGateSimulator.msi", 0, 0, SW_SHOW);
+				}
+
+				ImGui::End();
+			}
+		}
 
 		static bool addElementcollapsed;
 		float addElementHeight = (addElementcollapsed) ? (float)window.getSize().y - ImGui::GetFrameHeight() : (float)window.getSize().y - 100;

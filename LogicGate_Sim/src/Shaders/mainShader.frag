@@ -9,6 +9,7 @@ uniform float spacing;
 uniform float time;
 uniform int thickness;
 uniform vec2 resolution;
+uniform vec2 viewCenter;
 
 struct Node {
     vec2 position;
@@ -61,7 +62,7 @@ void main() {
     
     // Grid
     float epsilon = 0.5 + thickness;
-    vec2 modResult = mod(position + spacing / 2.0, spacing);
+    vec2 modResult = mod(position + vec2(viewCenter.x, resolution.y - viewCenter.y) + spacing / 2.0, spacing);
     if (modResult.x < epsilon && modResult.y < epsilon) {
         FragColor = vec4(1.0); // White grid
     }

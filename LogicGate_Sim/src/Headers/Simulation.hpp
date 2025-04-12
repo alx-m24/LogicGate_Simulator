@@ -15,13 +15,12 @@ inline sf::Vector2f getRandomOffset(float minOffset, float maxOffset) {
 
 	return sf::Vector2f(offsetX, offsetY);
 }
-inline sf::Vector2f clampToGrid(sf::Vector2f position, float gridSize) {
-	return sf::Vector2f(
-		std::floor(position.x / gridSize) * gridSize,
-		std::floor(position.y / gridSize) * gridSize
-	);
+inline sf::Vector2f SnapToGrid(sf::Vector2f worldPos, float spacing, sf::Vector2f offset) {
+	sf::Vector2f adjusted = worldPos + offset;
+	adjusted.x = std::round(adjusted.x / spacing) * spacing;
+	adjusted.y = std::round(adjusted.y / spacing) * spacing;
+	return adjusted - offset;
 }
-
 
 class Simulation
 {
@@ -37,6 +36,7 @@ private:
 	sf::Vector2f mousePos;
 	sf::Vector2f lastmousePos;
 	sf::Vector2f viewCenter;
+	sf::Vector2f lastviewCenter;
 
 public:
 	float gridSize = 10.0f;
@@ -74,7 +74,7 @@ public:
 	void addNode(sf::RenderWindow& window);
 	void update(sf::RenderWindow& window);
 	void draw(sf::RenderWindow& window);
-	void zoom(sf::RenderWindow& window);
+	void zoom(sf::RenderWindow& window, bool followMouse);
 	std::vector<Gate> getGates();
 	Components getComponents();
 	void deleteNode(int idx);
