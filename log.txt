@@ -1,0 +1,253 @@
+[35mProject Name: LogicGate_Simulator    Project Path: /home/alexa/dev/LogicGate_Simulator [0m
+
+[35mBuilding...[0m
+
+[35mBuilding to: /home/alexa/dev/LogicGate_Simulator/build/windows/debug [0m
+
+[35mBuilding with -DCMAKE_BUILD_TYPE=debug -DCMAKE_C_COMPILER=x86_64-w64-mingw32-gcc -DCMAKE_CXX_COMPILER=x86_64-w64-mingw32-g++ -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_SYSTEM_NAME=Windows -DVulkan_INCLUDE_DIR='/mnt/c/VulkanSDK/1.4.341.1/Include' -DVulkan_LIBRARY='/mnt/c/VulkanSDK/1.4.341.1/Lib/vulkan-1.lib' -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_FLAGS=-O0 -g3 -fno-omit-frame-pointer -fno-inline -Wall -Wextra -DCMAKE_CXX_FLAGS=-O0 -g3 -fno-omit-frame-pointer -fno-inline -Wall -Wextra /home/alexa/dev/LogicGate_Simulator[0m
+-- Using the multi-header code from /home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/nlohmann_json-src/include/
+-- Found ImGui v1.92.8 WIP in /home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui-src
+-- curl version=[8.3.0-DEV]
+-- Picky compiler options: -W -Wall -pedantic -Wbad-function-cast -Wconversion -Winline -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wno-long-long -Wno-multichar -Wpointer-arith -Wshadow -Wsign-compare -Wundef -Wunused -Wwrite-strings -Wcast-align -Wdeclaration-after-statement -Wempty-body -Wendif-labels -Wfloat-equal -Wignored-qualifiers -Wno-format-nonliteral -Wno-sign-conversion -Wno-system-headers -Wstrict-prototypes -Wtype-limits -Wvla -Wmissing-parameter-type -Wold-style-declaration -Wstrict-aliasing=3 -Wno-pedantic-ms-format -Wformat=2 -Warray-bounds=2 -ftree-vrp -Wduplicated-cond -Wnull-dereference -fdelete-null-pointer-checks -Wshift-negative-value -Wshift-overflow=2 -Walloc-zero -Wduplicated-branches -Wformat-overflow=2 -Wformat-truncation=1 -Wrestrict -Warith-conversion -Wdouble-promotion -Wenum-conversion -Wunused-const-variable
+-- Could NOT find ZLIB (missing: ZLIB_LIBRARY) (found version "1.3")
+-- Could NOT find LibPSL (missing: LIBPSL_LIBRARY LIBPSL_INCLUDE_DIR) 
+-- Could NOT find LibSSH2 (missing: LIBSSH2_LIBRARY LIBSSH2_INCLUDE_DIR) 
+-- Performing Curl Test HAVE_WIN32_WINNT
+-- Performing Curl Test HAVE_WIN32_WINNT - Success
+-- Found _WIN32_WINNT=0xa00
+-- Enabled features: IPv6 unixsockets AsynchDNS Largefile alt-svc HSTS NTLM threadsafe
+-- Enabled protocols: DICT FILE FTP GOPHER HTTP IMAP LDAP LDAPS MQTT POP3 RTSP SMB SMTP TELNET TFTP
+-- Enabled SSL backends: 
+-- Configuring done (2.8s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/alexa/dev/LogicGate_Simulator/build/windows/debug
+[1/3] Building CXX object _deps/imgui_sfml-build/CMakeFiles/ImGui-SFML.dir/imgui-SFML.cpp.obj
+FAILED: _deps/imgui_sfml-build/CMakeFiles/ImGui-SFML.dir/imgui-SFML.cpp.obj 
+ccache /usr/bin/x86_64-w64-mingw32-g++ -DIMGUI_SFML_EXPORTS -DIMGUI_SFML_SHARED_LIB -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -I/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui-src -I/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src -I/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/sfml-src/include -O0 -g3 -fno-omit-frame-pointer -fno-inline -Wall -Wextra -g -std=gnu++20 -MD -MT _deps/imgui_sfml-build/CMakeFiles/ImGui-SFML.dir/imgui-SFML.cpp.obj -MF _deps/imgui_sfml-build/CMakeFiles/ImGui-SFML.dir/imgui-SFML.cpp.obj.d -o _deps/imgui_sfml-build/CMakeFiles/ImGui-SFML.dir/imgui-SFML.cpp.obj -c /home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp: In function ‘ImGuiKey ImGui::SFML::keycodeToImGuiMod(sf::Keyboard::Key)’:
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:552:16: error: ‘ImGuiKey_ModCtrl’ was not declared in this scope; did you mean ‘ImGuiKey_LeftCtrl’?
+  552 |         return ImGuiKey_ModCtrl;
+      |                ^~~~~~~~~~~~~~~~
+      |                ImGuiKey_LeftCtrl
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:555:16: error: ‘ImGuiKey_ModShift’ was not declared in this scope; did you mean ‘ImGuiKey_LeftShift’?
+  555 |         return ImGuiKey_ModShift;
+      |                ^~~~~~~~~~~~~~~~~
+      |                ImGuiKey_LeftShift
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:558:16: error: ‘ImGuiKey_ModAlt’ was not declared in this scope; did you mean ‘ImGuiKey_LeftAlt’?
+  558 |         return ImGuiKey_ModAlt;
+      |                ^~~~~~~~~~~~~~~
+      |                ImGuiKey_LeftAlt
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:561:16: error: ‘ImGuiKey_ModSuper’ was not declared in this scope; did you mean ‘ImGuiKey_LeftSuper’?
+  561 |         return ImGuiKey_ModSuper;
+      |                ^~~~~~~~~~~~~~~~~
+      |                ImGuiKey_LeftSuper
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp: In function ‘void ImGui::SFML::ProcessEvent(const sf::Event&)’:
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:621:32: error: ‘ImGuiKey_ModCtrl’ was not declared in this scope; did you mean ‘ImGuiKey_LeftCtrl’?
+  621 |                 io.AddKeyEvent(ImGuiKey_ModCtrl, event.key.control);
+      |                                ^~~~~~~~~~~~~~~~
+      |                                ImGuiKey_LeftCtrl
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:622:32: error: ‘ImGuiKey_ModShift’ was not declared in this scope; did you mean ‘ImGuiKey_LeftShift’?
+  622 |                 io.AddKeyEvent(ImGuiKey_ModShift, event.key.shift);
+      |                                ^~~~~~~~~~~~~~~~~
+      |                                ImGuiKey_LeftShift
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:623:32: error: ‘ImGuiKey_ModAlt’ was not declared in this scope; did you mean ‘ImGuiKey_LeftAlt’?
+  623 |                 io.AddKeyEvent(ImGuiKey_ModAlt, event.key.alt);
+      |                                ^~~~~~~~~~~~~~~
+      |                                ImGuiKey_LeftAlt
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:624:32: error: ‘ImGuiKey_ModSuper’ was not declared in this scope; did you mean ‘ImGuiKey_LeftSuper’?
+  624 |                 io.AddKeyEvent(ImGuiKey_ModSuper, event.key.system);
+      |                                ^~~~~~~~~~~~~~~~~
+      |                                ImGuiKey_LeftSuper
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp: In function ‘void ImGui::SFML::SetJoystickMapping(int, unsigned int)’:
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:874:10: error: ‘ImGuiNavInput_Activate’ was not declared in this scope
+  874 |     case ImGuiNavInput_Activate:
+      |          ^~~~~~~~~~~~~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:877:10: error: ‘ImGuiNavInput_Cancel’ was not declared in this scope
+  877 |     case ImGuiNavInput_Cancel:
+      |          ^~~~~~~~~~~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:880:10: error: ‘ImGuiNavInput_Input’ was not declared in this scope
+  880 |     case ImGuiNavInput_Input:
+      |          ^~~~~~~~~~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:883:10: error: ‘ImGuiNavInput_Menu’ was not declared in this scope
+  883 |     case ImGuiNavInput_Menu:
+      |          ^~~~~~~~~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:886:10: error: ‘ImGuiNavInput_FocusPrev’ was not declared in this scope
+  886 |     case ImGuiNavInput_FocusPrev:
+      |          ^~~~~~~~~~~~~~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:887:10: error: ‘ImGuiNavInput_TweakSlow’ was not declared in this scope
+  887 |     case ImGuiNavInput_TweakSlow:
+      |          ^~~~~~~~~~~~~~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:890:10: error: ‘ImGuiNavInput_FocusNext’ was not declared in this scope
+  890 |     case ImGuiNavInput_FocusNext:
+      |          ^~~~~~~~~~~~~~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:891:10: error: ‘ImGuiNavInput_TweakFast’ was not declared in this scope
+  891 |     case ImGuiNavInput_TweakFast:
+      |          ^~~~~~~~~~~~~~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp: In function ‘bool ImGui::ImageButton(const sf::Texture&, const sf::Vector2f&, int, const sf::Color&, const sf::Color&)’:
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1024:30: error: no matching function for call to ‘ImageButton(ImTextureID&, ImVec2, ImVec2, ImVec2, const int&, ImColor, ImColor)’
+ 1024 |     return ImGui::ImageButton(textureID, ImVec2(size.x, size.y), ImVec2(0, 0), ImVec2(1, 1),
+      |            ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1025 |                               framePadding, toImColor(bgColor), toImColor(tintColor));
+      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:2:
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui-src/imgui.h:664:29: note: candidate: ‘bool ImGui::ImageButton(const char*, ImTextureRef, const ImVec2&, const ImVec2&, const ImVec2&, const ImVec4&, const ImVec4&)’
+  664 |     IMGUI_API bool          ImageButton(const char* str_id, ImTextureRef tex_ref, const ImVec2& image_size, const ImVec2& uv0 = ImVec2(0, 0), const ImVec2& uv1 = ImVec2(1, 1), const ImVec4& bg_col = ImVec4(0, 0, 0, 0), const ImVec4& tint_col = ImVec4(1, 1, 1, 1));
+      |                             ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui-src/imgui.h:664:74: note:   no known conversion for argument 2 from ‘ImVec2’ to ‘ImTextureRef’
+  664 |     IMGUI_API bool          ImageButton(const char* str_id, ImTextureRef tex_ref, const ImVec2& image_size, const ImVec2& uv0 = ImVec2(0, 0), const ImVec2& uv1 = ImVec2(1, 1), const ImVec4& bg_col = ImVec4(0, 0, 0, 0), const ImVec4& tint_col = ImVec4(1, 1, 1, 1));
+      |                                                             ~~~~~~~~~~~~~^~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1014:6: note: candidate: ‘bool ImGui::ImageButton(const sf::Texture&, int, const sf::Color&, const sf::Color&)’
+ 1014 | bool ImageButton(const sf::Texture& texture, const int framePadding, const sf::Color& bgColor,
+      |      ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1014:6: note:   candidate expects 4 arguments, 7 provided
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1020:6: note: candidate: ‘bool ImGui::ImageButton(const sf::Texture&, const sf::Vector2f&, int, const sf::Color&, const sf::Color&)’
+ 1020 | bool ImageButton(const sf::Texture& texture, const sf::Vector2f& size, const int framePadding,
+      |      ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1020:6: note:   candidate expects 5 arguments, 7 provided
+In file included from /home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1:
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.h:111:21: note: candidate: ‘bool ImGui::ImageButton(const sf::RenderTexture&, int, const sf::Color&, const sf::Color&)’
+  111 | IMGUI_SFML_API bool ImageButton(const sf::RenderTexture& texture, const int framePadding = -1,
+      |                     ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.h:111:21: note:   candidate expects 4 arguments, 7 provided
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.h:114:21: note: candidate: ‘bool ImGui::ImageButton(const sf::RenderTexture&, const sf::Vector2f&, int, const sf::Color&, const sf::Color&)’
+  114 | IMGUI_SFML_API bool ImageButton(const sf::RenderTexture& texture, const sf::Vector2f& size,
+      |                     ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.h:114:21: note:   candidate expects 5 arguments, 7 provided
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.h:120:21: note: candidate: ‘bool ImGui::ImageButton(const sf::Sprite&, int, const sf::Color&, const sf::Color&)’
+  120 | IMGUI_SFML_API bool ImageButton(const sf::Sprite& sprite, const int framePadding = -1,
+      |                     ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.h:120:21: note:   candidate expects 4 arguments, 7 provided
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.h:123:21: note: candidate: ‘bool ImGui::ImageButton(const sf::Sprite&, const sf::Vector2f&, int, const sf::Color&, const sf::Color&)’
+  123 | IMGUI_SFML_API bool ImageButton(const sf::Sprite& sprite, const sf::Vector2f& size,
+      |                     ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.h:123:21: note:   candidate expects 5 arguments, 7 provided
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp: In function ‘bool ImGui::ImageButton(const sf::RenderTexture&, const sf::Vector2f&, int, const sf::Color&, const sf::Color&)’:
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1041:30: error: no matching function for call to ‘ImageButton(ImTextureID&, ImVec2, ImVec2, ImVec2, const int&, ImColor, ImColor)’
+ 1041 |     return ImGui::ImageButton(textureID, ImVec2(size.x, size.y), ImVec2(0, 1),
+      |            ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1042 |                               ImVec2(1, 0), // flipped vertically, because textures in
+      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1043 |                                             // sf::RenderTexture are stored this way
+      |                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1044 |                               framePadding, toImColor(bgColor), toImColor(tintColor));
+      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui-src/imgui.h:664:29: note: candidate: ‘bool ImGui::ImageButton(const char*, ImTextureRef, const ImVec2&, const ImVec2&, const ImVec2&, const ImVec4&, const ImVec4&)’
+  664 |     IMGUI_API bool          ImageButton(const char* str_id, ImTextureRef tex_ref, const ImVec2& image_size, const ImVec2& uv0 = ImVec2(0, 0), const ImVec2& uv1 = ImVec2(1, 1), const ImVec4& bg_col = ImVec4(0, 0, 0, 0), const ImVec4& tint_col = ImVec4(1, 1, 1, 1));
+      |                             ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui-src/imgui.h:664:74: note:   no known conversion for argument 2 from ‘ImVec2’ to ‘ImTextureRef’
+  664 |     IMGUI_API bool          ImageButton(const char* str_id, ImTextureRef tex_ref, const ImVec2& image_size, const ImVec2& uv0 = ImVec2(0, 0), const ImVec2& uv1 = ImVec2(1, 1), const ImVec4& bg_col = ImVec4(0, 0, 0, 0), const ImVec4& tint_col = ImVec4(1, 1, 1, 1));
+      |                                                             ~~~~~~~~~~~~~^~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1014:6: note: candidate: ‘bool ImGui::ImageButton(const sf::Texture&, int, const sf::Color&, const sf::Color&)’
+ 1014 | bool ImageButton(const sf::Texture& texture, const int framePadding, const sf::Color& bgColor,
+      |      ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1014:6: note:   candidate expects 4 arguments, 7 provided
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1020:6: note: candidate: ‘bool ImGui::ImageButton(const sf::Texture&, const sf::Vector2f&, int, const sf::Color&, const sf::Color&)’
+ 1020 | bool ImageButton(const sf::Texture& texture, const sf::Vector2f& size, const int framePadding,
+      |      ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1020:6: note:   candidate expects 5 arguments, 7 provided
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1030:6: note: candidate: ‘bool ImGui::ImageButton(const sf::RenderTexture&, int, const sf::Color&, const sf::Color&)’
+ 1030 | bool ImageButton(const sf::RenderTexture& texture, const int framePadding, const sf::Color& bgColor,
+      |      ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1030:6: note:   candidate expects 4 arguments, 7 provided
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1036:6: note: candidate: ‘bool ImGui::ImageButton(const sf::RenderTexture&, const sf::Vector2f&, int, const sf::Color&, const sf::Color&)’
+ 1036 | bool ImageButton(const sf::RenderTexture& texture, const sf::Vector2f& size, const int framePadding,
+      |      ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1036:6: note:   candidate expects 5 arguments, 7 provided
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.h:120:21: note: candidate: ‘bool ImGui::ImageButton(const sf::Sprite&, int, const sf::Color&, const sf::Color&)’
+  120 | IMGUI_SFML_API bool ImageButton(const sf::Sprite& sprite, const int framePadding = -1,
+      |                     ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.h:120:21: note:   candidate expects 4 arguments, 7 provided
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.h:123:21: note: candidate: ‘bool ImGui::ImageButton(const sf::Sprite&, const sf::Vector2f&, int, const sf::Color&, const sf::Color&)’
+  123 | IMGUI_SFML_API bool ImageButton(const sf::Sprite& sprite, const sf::Vector2f& size,
+      |                     ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.h:123:21: note:   candidate expects 5 arguments, 7 provided
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp: In function ‘bool ImGui::ImageButton(const sf::Sprite&, const sf::Vector2f&, int, const sf::Color&, const sf::Color&)’:
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1075:30: error: no matching function for call to ‘ImageButton(ImTextureID&, ImVec2, ImVec2&, ImVec2&, const int&, ImColor, ImColor)’
+ 1075 |     return ImGui::ImageButton(textureID, ImVec2(size.x, size.y), uv0, uv1, framePadding,
+      |            ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1076 |                               toImColor(bgColor), toImColor(tintColor));
+      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui-src/imgui.h:664:29: note: candidate: ‘bool ImGui::ImageButton(const char*, ImTextureRef, const ImVec2&, const ImVec2&, const ImVec2&, const ImVec4&, const ImVec4&)’
+  664 |     IMGUI_API bool          ImageButton(const char* str_id, ImTextureRef tex_ref, const ImVec2& image_size, const ImVec2& uv0 = ImVec2(0, 0), const ImVec2& uv1 = ImVec2(1, 1), const ImVec4& bg_col = ImVec4(0, 0, 0, 0), const ImVec4& tint_col = ImVec4(1, 1, 1, 1));
+      |                             ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui-src/imgui.h:664:74: note:   no known conversion for argument 2 from ‘ImVec2’ to ‘ImTextureRef’
+  664 |     IMGUI_API bool          ImageButton(const char* str_id, ImTextureRef tex_ref, const ImVec2& image_size, const ImVec2& uv0 = ImVec2(0, 0), const ImVec2& uv1 = ImVec2(1, 1), const ImVec4& bg_col = ImVec4(0, 0, 0, 0), const ImVec4& tint_col = ImVec4(1, 1, 1, 1));
+      |                                                             ~~~~~~~~~~~~~^~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1014:6: note: candidate: ‘bool ImGui::ImageButton(const sf::Texture&, int, const sf::Color&, const sf::Color&)’
+ 1014 | bool ImageButton(const sf::Texture& texture, const int framePadding, const sf::Color& bgColor,
+      |      ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1014:6: note:   candidate expects 4 arguments, 7 provided
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1020:6: note: candidate: ‘bool ImGui::ImageButton(const sf::Texture&, const sf::Vector2f&, int, const sf::Color&, const sf::Color&)’
+ 1020 | bool ImageButton(const sf::Texture& texture, const sf::Vector2f& size, const int framePadding,
+      |      ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1020:6: note:   candidate expects 5 arguments, 7 provided
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1030:6: note: candidate: ‘bool ImGui::ImageButton(const sf::RenderTexture&, int, const sf::Color&, const sf::Color&)’
+ 1030 | bool ImageButton(const sf::RenderTexture& texture, const int framePadding, const sf::Color& bgColor,
+      |      ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1030:6: note:   candidate expects 4 arguments, 7 provided
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1036:6: note: candidate: ‘bool ImGui::ImageButton(const sf::RenderTexture&, const sf::Vector2f&, int, const sf::Color&, const sf::Color&)’
+ 1036 | bool ImageButton(const sf::RenderTexture& texture, const sf::Vector2f& size, const int framePadding,
+      |      ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1036:6: note:   candidate expects 5 arguments, 7 provided
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1049:6: note: candidate: ‘bool ImGui::ImageButton(const sf::Sprite&, int, const sf::Color&, const sf::Color&)’
+ 1049 | bool ImageButton(const sf::Sprite& sprite, const int framePadding, const sf::Color& bgColor,
+      |      ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1049:6: note:   candidate expects 4 arguments, 7 provided
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1056:6: note: candidate: ‘bool ImGui::ImageButton(const sf::Sprite&, const sf::Vector2f&, int, const sf::Color&, const sf::Color&)’
+ 1056 | bool ImageButton(const sf::Sprite& sprite, const sf::Vector2f& size, const int framePadding,
+      |      ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1056:6: note:   candidate expects 5 arguments, 7 provided
+In file included from /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/cassert:44,
+                 from /home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:18:
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp: In function ‘void {anonymous}::RenderDrawLists(ImDrawData*)’:
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1184:28: error: no match for ‘operator!=’ (operand types are ‘ImTextureRef’ and ‘ImTextureID’ {aka ‘long long unsigned int’})
+ 1184 |     assert(io.Fonts->TexID != (ImTextureID) nullptr); // You forgot to create and set font texture
+      |            ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/share/mingw-w64/include/winnt.h:648,
+                 from /usr/share/mingw-w64/include/minwindef.h:163,
+                 from /usr/share/mingw-w64/include/windef.h:9,
+                 from /usr/share/mingw-w64/include/windows.h:69,
+                 from /usr/share/mingw-w64/include/GL/gl.h:13,
+                 from /home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/sfml-src/include/SFML/OpenGL.hpp:46,
+                 from /home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:11:
+/usr/share/mingw-w64/include/guiddef.h:181:15: note: candidate: ‘bool operator!=(const GUID&, const GUID&)’
+  181 | __inline bool operator!= (REFGUID guidOne, REFGUID guidOther) { return ! (guidOne == guidOther); }
+      |               ^~~~~~~~
+/usr/share/mingw-w64/include/guiddef.h:181:35: note:   no known conversion for argument 1 from ‘ImTextureRef’ to ‘const GUID&’
+  181 | __inline bool operator!= (REFGUID guidOne, REFGUID guidOther) { return ! (guidOne == guidOther); }
+      |                                   ^
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1231:89: error: expected primary-expression before ‘,’ token
+ 1231 |                         (const GLvoid*)((const char*)vtx_buffer + IM_OFFSETOF(ImDrawVert, pos)));
+      |                                                                                         ^
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1231:91: error: ‘pos’ was not declared in this scope; did you mean ‘pow’?
+ 1231 |                         (const GLvoid*)((const char*)vtx_buffer + IM_OFFSETOF(ImDrawVert, pos)));
+      |                                                                                           ^~~
+      |                                                                                           pow
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1231:67: error: ‘IM_OFFSETOF’ was not declared in this scope
+ 1231 |                         (const GLvoid*)((const char*)vtx_buffer + IM_OFFSETOF(ImDrawVert, pos)));
+      |                                                                   ^~~~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1233:91: error: expected primary-expression before ‘,’ token
+ 1233 |                           (const GLvoid*)((const char*)vtx_buffer + IM_OFFSETOF(ImDrawVert, uv)));
+      |                                                                                           ^
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1233:93: error: ‘uv’ was not declared in this scope
+ 1233 |                           (const GLvoid*)((const char*)vtx_buffer + IM_OFFSETOF(ImDrawVert, uv)));
+      |                                                                                             ^~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1235:88: error: expected primary-expression before ‘,’ token
+ 1235 |                        (const GLvoid*)((const char*)vtx_buffer + IM_OFFSETOF(ImDrawVert, col)));
+      |                                                                                        ^
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1235:90: error: ‘col’ was not declared in this scope; did you mean ‘cosl’?
+ 1235 |                        (const GLvoid*)((const char*)vtx_buffer + IM_OFFSETOF(ImDrawVert, col)));
+      |                                                                                          ^~~
+      |                                                                                          cosl
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1263:86: error: ‘const struct ImDrawCmd’ has no member named ‘TextureId’
+ 1263 |                     GLuint textureHandle = convertImTextureIDToGLTextureHandle(pcmd->TextureId);
+      |                                                                                      ^~~~~~~~~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp: In function ‘const char* {anonymous}::getClipboardText(void*)’:
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1409:76: error: conversion from ‘basic_string<[...],sf::U8StringCharTraits>’ to non-scalar type ‘basic_string<[...],std::char_traits<unsigned char>>’ requested
+ 1409 |     std::basic_string<std::uint8_t> tmp = sf::Clipboard::getString().toUtf8();
+      |                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp: At global scope:
+/home/alexa/dev/LogicGate_Simulator/build/windows/debug/_deps/imgui_sfml-src/imgui-SFML.cpp:1125:8: warning: ‘GLuint {anonymous}::convertImTextureIDToGLTextureHandle(ImTextureID)’ defined but not used [-Wunused-function]
+ 1125 | GLuint convertImTextureIDToGLTextureHandle(ImTextureID textureID) {
+      |        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ninja: build stopped: subcommand failed.

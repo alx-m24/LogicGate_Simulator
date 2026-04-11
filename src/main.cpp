@@ -9,7 +9,6 @@
 #include "Headers/gui/nfd.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <curl/curl.h>
 
 const std::string currentVersion = "1.2.1";
 
@@ -45,32 +44,6 @@ size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
 	return size * nmemb;
 }
 
-static std::string checkUpdates() {
-	CURL* curl;
-	CURLcode res;
-	std::string readBuffer;
-
-	curl_global_init(CURL_GLOBAL_DEFAULT);
-	curl = curl_easy_init();
-
-	if (curl) {
-		curl_easy_setopt(curl, CURLOPT_URL, "https://alx-m24-github-io.pages.dev/LogicGateSim/Updates/latestVersion");
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback); // set callback
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);       // pass string buffer
-
-		res = curl_easy_perform(curl);
-
-		if (res != CURLE_OK)
-			std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
-
-		curl_easy_cleanup(curl);
-	}
-
-	curl_global_cleanup();
-
-	return readBuffer;
-}
-
 int main() {
 #pragma region Initialize
 	std::string currentDir = fs::current_path().string();
@@ -84,27 +57,12 @@ int main() {
 	window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 	window.setVerticalSyncEnabled(true);
 
-	char* appDataPath = nullptr;
-	size_t len;
-	errno_t err = _dupenv_s(&appDataPath, &len, "APPDATA"); // Get %APPDATA% path
-
-	if (err || appDataPath == nullptr) {
-		std::cerr << "Error retrieving APPDATA path!\n";
-	}
-
-
-	std::string path(appDataPath);
-	path += "\\LogicGateSim";
-	free(appDataPath);
+    std::string path = currentDir;
 
 	// Initialize ImGui-SFML
-	ImGui::SFML::Init(window);
+	if (!ImGui::SFML::Init(window)) { return EXIT_FAILURE; }
 	applyStyle();
 
-	checkUpdates();
-
-	std::string newestVersion = checkUpdates();
-	bool newVersion = newestVersion != currentVersion;
 #pragma endregion
 
 #pragma region Objects
@@ -149,26 +107,6 @@ int main() {
 #pragma region Update
 		ImGui::SFML::Update(window, deltaClock.restart());
 		simulation.update(window);
-
-		{
-			if (newVersion) {
-				ImGui::Begin("Update Available", &newVersion);
-
-				ImGui::Text(std::string("New version(" + newestVersion + ") is available for download").c_str());
-
-				ImGui::Text("Release notes:");
-				ImGui::SameLine();
-				ImGui::TextLink("https://alx-m24-github-io.pages.dev/LogicGateSim/Updates/ReleaseNotes.html");
-
-				if (ImGui::Button("Dismiss")) newVersion = false;
-				ImGui::SameLine();
-				if (ImGui::Button("Download")) {
-					ShellExecute(0, 0, L"https://alx-m24-github-io.pages.dev/LogicGateSim/hwapdosjizo07122024-/herfiuh/difoej1j/LogicGateSimulator.msi", 0, 0, SW_SHOW);
-				}
-
-				ImGui::End();
-			}
-		}
 
 		static bool addElementcollapsed;
 		float addElementHeight = (addElementcollapsed) ? (float)window.getSize().y - ImGui::GetFrameHeight() : (float)window.getSize().y - 100;
