@@ -45,7 +45,7 @@ Supports saving/loading circuits, and exporting them as reusable **chips/custom 
 
 - Built on **SFML** for rendering and input handling.  
 - **ImGui** manages the interface for menus, panels, and node properties.  
-- Save files are plain JSON or binary (depending on implementation) for portability.  
+- Save files are plain JSON for portability.  
 - Custom chip files can be loaded back as a single node in new circuits.
 
 ---
