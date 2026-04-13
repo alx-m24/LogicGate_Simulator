@@ -139,6 +139,9 @@ void loadasCustom(std::string path, std::string name, Components& components, fl
     unsigned int originalNodeOffset = components.nodes.size();
     unsigned int nodeIdxOffset = components.nodes.size();
 
+    std::vector<uint32_t> childrenGates{};
+    std::vector<uint32_t> childrenNodes{};
+
     for (json gate : data["Gates"]) {
         std::string gname = gate["Name"];
 
@@ -155,6 +158,8 @@ void loadasCustom(std::string path, std::string name, Components& components, fl
             gate["Position"][1]
         };
         components.gates.back()->shouldDraw = false;
+
+        childrenGates.emplace_back(components.gates.size() - 1);
     }
 
     for (json node : data["Nodes"]) {
@@ -165,6 +170,8 @@ void loadasCustom(std::string path, std::string name, Components& components, fl
         };
         components.nodes.back()->state = node["State"];
         components.nodes.back()->shouldDraw = false;
+
+        childrenNodes.emplace_back(components.nodes.size() - 1);
     }
 
     for (json wire : data["Wires"]) {
@@ -227,6 +234,9 @@ void loadasCustom(std::string path, std::string name, Components& components, fl
             arial
         )
     );
+
+    components.gates.back()->children = childrenGates;
+    components.gates.back()->childrenNodes = childrenNodes;
 
     int connectorIdx = 0;
     for (int i : data["InputNode"]) {

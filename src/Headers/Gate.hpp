@@ -33,6 +33,9 @@ public:
 	std::vector<Node*> custom_inputs;
 	std::vector<Node*> custom_outputs;
 
+    std::vector<uint32_t> children;
+    std::vector<uint32_t> childrenNodes;
+
 public:
 	sf::Vector2f position;
 	bool isSelected = false;
