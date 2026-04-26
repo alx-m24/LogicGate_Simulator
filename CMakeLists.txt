@@ -9,14 +9,18 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # --- Dependencies ---
 include(FetchContent)
 
-# My custom engine
+# SFML
 FetchContent_Declare(
-    LexviEngine
-    GIT_REPOSITORY https://github.com/alx-m24/LexviEngine.git
-    GIT_TAG        old-engine
+    SFML
+    GIT_REPOSITORY https://github.com/SFML/SFML.git
+    GIT_TAG 2.6.1
 )
 
-FetchContent_MakeAvailable(LexviEngine)
+set(SFML_BUILD_AUDIO OFF CACHE BOOL "" FORCE)
+set(SFML_BUILD_NETWORK OFF CACHE BOOL "" FORCE)
+set(SFML_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+
+FetchContent_MakeAvailable(SFML)
 
 # --- Executable ----
 add_executable(${PROJECT_NAME}
@@ -24,12 +28,13 @@ add_executable(${PROJECT_NAME}
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
-    LexviEngine
+    sfml-graphics
+    sfml-window
+    sfml-system
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/include
-    ${LexviEngine_SOURCE_DIR}
 )
 
 # --- Copy GLFW and GLAD DLLs if they were built shared (Windows) ---
@@ -66,4 +71,20 @@ if(WIN32 AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
             )
         endif()
     endforeach()
+
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        $<TARGET_FILE:sfml-window>
+        $<TARGET_FILE_DIR:${PROJECT_NAME}>
+    )
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        $<TARGET_FILE:sfml-graphics>
+        $<TARGET_FILE_DIR:${PROJECT_NAME}>
+    )
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        $<TARGET_FILE:sfml-system>
+        $<TARGET_FILE_DIR:${PROJECT_NAME}>
+    )
 endif()

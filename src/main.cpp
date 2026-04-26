@@ -1,34 +1,27 @@
-#include <LexviEngine/LexviEngine.hpp>
-#include <LexviEngine/Game/Game.hpp>
-#include <memory>
-#include <iostream>
-
-class LogicGateSimulator : public Game {
-    public:
-        bool loadResources([[maybe_unused]] Lexvi::Engine& engine) override {
-            std::cout << "Init" << std::endl;
-            return true;
-        }
-
-        void update([[maybe_unused]] Lexvi::Engine& engine, [[maybe_unused]] float dt) override {
-            std::cout << "update" << std::endl;
-        }
-
-        void render([[maybe_unused]] Lexvi::Renderer& renderer) override {
-            std::cout << "render" << std::endl;
-        }
-
-        void shutdown() override {
-            std::cout << "Shutdown" << std::endl;
-        }
-};
+#include <SFML/Graphics.hpp>
 
 int main() {
-    constexpr bool VSYNC_ENABLED = true;
-    constexpr bool BUILTIN_PERFORMANCE_UI_ENABLED = false;
-    Lexvi::Engine engine("LogicGateSimulator", std::make_unique<LogicGateSimulator>(), VSYNC_ENABLED, BUILTIN_PERFORMANCE_UI_ENABLED);
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Logic Gate Simulator");
 
-    engine.run();
+    window.setFramerateLimit(60);
 
-    return EXIT_SUCCESS;
+    sf::CircleShape circle(50.f);
+    circle.setFillColor(sf::Color::Green);
+    circle.setPosition(375.f, 275.f);
+
+    while (window.isOpen()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+
+        window.clear(sf::Color::Black);
+
+        window.draw(circle);
+
+        window.display();
+    }
+
+    return 0;
 }
