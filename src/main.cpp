@@ -1,8 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <math.h>
 
-#include "Node/Node.hpp"
 #include "Globals.hpp"
+#include "Simulation/Simulation.hpp"
 
 int main() {
     sf::Clock clock;
@@ -13,11 +13,10 @@ int main() {
 
     window.setVerticalSyncEnabled(true);
 
-    Node node{};
-    node.setPosition(sf::Vector2f(window.getSize()) / 2.0f);
-    node.toggleState();
+    Simulation simulation{};
 
-    uint32_t lastTime = 0;
+    simulation.AddNode({ sf::Vector2f(window.getSize()) / 2.0f, false });
+    simulation.AddNode({ sf::Vector2f(window.getSize().x, window.getSize().y / 2.0f) / 2.0f, true });
 
     while (window.isOpen()) {
         sf::Event event;
@@ -36,13 +35,11 @@ int main() {
             }
         }
 
+        simulation.Update();
+
         window.clear(sf::Color(56, 56, 56));
 
-        uint32_t currentTime = static_cast<uint32_t>(clock.getElapsedTime().asSeconds());
-        if (currentTime != lastTime) node.toggleState();
-        lastTime = currentTime; 
-
-        node.Draw(window);
+        simulation.Render(window);
 
         window.display();
     }

@@ -41,7 +41,7 @@ void Node::Draw(sf::RenderTarget& target) const {
     g_NodeSprite.setOutlineColor(sf::Color::Black);
     g_NodeSprite.setRadius(getRadius());
     g_NodeSprite.setFillColor(this->getState() ? sf::Color::Red : sf::Color::White);
-    g_NodeSprite.setPosition(m_position);
+    g_NodeSprite.setPosition(m_position - sf::Vector2f(getRadius(), getRadius()));
 
     target.draw(g_NodeSprite);
 }

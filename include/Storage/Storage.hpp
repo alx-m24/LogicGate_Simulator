@@ -13,7 +13,7 @@ class Storage {
     private:
         std::vector<HandleRep> m_freeList{}; // free slots in the array
         std::vector<HandleRep> m_generations;
-        std::vector<T> m_elements{}; // actual array
+        std::vector<std::pair<Handle_T, T>> m_elements{}; // actual array
 
     public:
         Storage() = default;
@@ -40,7 +40,7 @@ class Storage {
                 m_generations.push_back(0);
             }
 
-            m_elements[handle.ID] = val;
+            m_elements[handle.ID] = { handle , val };
 
             return handle;
         }
@@ -61,7 +61,8 @@ class Storage {
                 m_generations.push_back(0);
             }
 
-            m_elements[handle.ID] = std::move(val);
+            m_elements[handle.ID].first = handle;
+            m_elements[handle.ID].second = std::move(val);
 
             return handle;
         }
@@ -71,19 +72,20 @@ class Storage {
             if (isValid(handle)) {
                 m_freeList.push_back(handle.ID);
                 m_generations[handle.ID] += 1;
+                m_elements[handle.ID] = {}; // invalidating handle
             }
         }
 
     public:
         const T& get(const Handle_T& handle) const {
-            if (handle.isValid()) {
-                return m_elements[handle.ID];
+            if (isValid(handle)) {
+                return m_elements[handle.ID].second;
             }
         }
 
         T& get(const Handle_T& handle) {
-            if (handle.isValid()) {
-                return m_elements[handle.ID];
+            if (isValid(handle)) {
+                return m_elements[handle.ID].second;
             }
         }
 
@@ -96,5 +98,21 @@ class Storage {
         }
 
     public:
+        template<typename Func>
+        void foreach(Func func) {
+            for (auto& [handle, element] : m_elements) {
+                if (handle.isValid()) {
+                    func(element);
+                }
+            }
+        }
 
+        template<typename Func>
+        void foreach(Func func) const {
+            for (const auto& [handle, element] : m_elements) {
+                if (handle.isValid()) {
+                    func(element);
+                }
+            }
+        }
 };

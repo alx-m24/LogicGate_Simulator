@@ -10,8 +10,10 @@ struct Handle {
     Rep ID = INVALID_ID;
     Rep GENERATION = INVALID_GEN;
 
-    const Rep INVALID_ID = std::numeric_limits<Rep>::max();
-    const Rep INVALID_GEN = std::numeric_limits<Rep>::max();
+    static const Rep INVALID_ID = std::numeric_limits<Rep>::max();
+    static const Rep INVALID_GEN = std::numeric_limits<Rep>::max();
+
+    Handle() = default;
 
     bool isValid() const {
         return ID != INVALID_ID && GENERATION != INVALID_GEN;

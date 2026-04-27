@@ -5,6 +5,7 @@
 class Node {
     public:
         Node() = default;
+        Node(sf::Vector2f position, bool state = false) : m_state(state), m_position(position) {}
 
     private:
         bool m_state = false;
