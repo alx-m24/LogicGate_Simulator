@@ -6,6 +6,13 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# --- Executable ----
+add_executable(${PROJECT_NAME}
+    src/main.cpp
+    src/Globals.cpp
+    src/Node/Node.cpp
+)
+
 # --- Dependencies ---
 include(FetchContent)
 
@@ -21,11 +28,6 @@ set(SFML_BUILD_NETWORK OFF CACHE BOOL "" FORCE)
 set(SFML_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
 FetchContent_MakeAvailable(SFML)
-
-# --- Executable ----
-add_executable(${PROJECT_NAME}
-    src/main.cpp
-)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     sfml-graphics

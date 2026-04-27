@@ -1,0 +1,35 @@
+#pragma once
+
+#include <SFML/Graphics.hpp>
+
+class Node {
+    public:
+        Node() = default;
+
+    private:
+        bool m_state = false;
+        sf::Vector2f m_position{};
+
+    public:
+        sf::Vector2f getPosition() const;
+        void setPosition(sf::Vector2f position);
+
+    public:
+        bool getState() const;
+        void setState(bool state);
+
+        void toggleState();
+
+    public:
+        bool operator()() const {
+            return getState();
+        }
+
+        static float getRadius();
+
+    public:
+        bool isVisible(const sf::Vector2f minBounds, const sf::Vector2f maxBounds) const;
+
+        // Draws and handles culling
+        void Draw(sf::RenderTarget& target) const;
+};
