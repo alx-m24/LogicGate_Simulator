@@ -32,7 +32,7 @@ void Simulation::LeftMouseHold() {
     Node* topNode = nullptr;
     m_nodes.foreach(
         [&topNode] (Node& node) {
-            if (node.contains(g_mousePosition)) {
+            if (node.contains(g_mouseWorldPosition)) {
                 topNode = &node;
             }
         }
@@ -51,7 +51,7 @@ void Simulation::LeftMouseReleased() {
     Node* topNode = nullptr;
     m_nodes.foreach(
         [&topNode] (Node& node) {
-            if (node.contains(g_mousePosition)) {
+            if (node.contains(g_mouseWorldPosition)) {
                 topNode = &node;
             }
         }

@@ -9,6 +9,7 @@
 extern float g_ViewportScale;
 extern MouseButtons_T g_mouseButtons;
 extern sf::Vector2i g_mousePosition;
+extern sf::Vector2f g_mouseWorldPosition;
 extern sf::Vector2f g_worldOffset;
 extern sf::Vector2f g_mouseDelta;
 

@@ -18,7 +18,7 @@ int main() {
     Simulation simulation{};
 
     simulation.AddNode({ sf::Vector2f(window.getSize()) / 2.0f, false });
-    simulation.AddNode({ sf::Vector2f(window.getSize().x, window.getSize().y / 2.0f) / 2.0f, true });
+    simulation.AddNode({ sf::Vector2f(window.getSize().x, window.getSize().y / 2.0f) / 2.0f, false });
 
     g_mousePosition = sf::Mouse::getPosition(window);
 
@@ -61,6 +61,7 @@ int main() {
                 g_mousePosition = newMousePosition;
             }
         }
+        g_mouseWorldPosition = sf::Vector2f(g_mousePosition) - g_worldOffset;
 
         simulation.Update();
 
@@ -68,20 +69,20 @@ int main() {
 
         sf::Vector2u windowSize = window.getSize();
         
-        // Scale texture repeat inversely with viewport scale so grid zooms correctly
         background.setTextureRect(sf::IntRect(
-            0,
-            0,
+            static_cast<int>(-g_worldOffset.x / (BACKGROUND_BASE_SCALE * g_ViewportScale)),
+            static_cast<int>(-g_worldOffset.y / (BACKGROUND_BASE_SCALE * g_ViewportScale)),
             static_cast<int>(windowSize.x / (BACKGROUND_BASE_SCALE * g_ViewportScale)),
             static_cast<int>(windowSize.y / (BACKGROUND_BASE_SCALE * g_ViewportScale))
         ));
         
         background.setScale(
-            static_cast<float>(windowSize.x) / background.getLocalBounds().width  * (1.0f / g_ViewportScale) * g_ViewportScale,
-            static_cast<float>(windowSize.y) / background.getLocalBounds().height * (1.0f / g_ViewportScale) * g_ViewportScale
+            BACKGROUND_BASE_SCALE * g_ViewportScale,
+            BACKGROUND_BASE_SCALE * g_ViewportScale
         );
+        
         background.setPosition(0.f, 0.f);
-        background.move(g_worldOffset);
+        
         window.draw(background);
 
         simulation.Render(window);
