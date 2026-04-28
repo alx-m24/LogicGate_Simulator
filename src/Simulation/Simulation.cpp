@@ -29,7 +29,18 @@ void Simulation::Render(sf::RenderTarget& target) {
 }
 
 void Simulation::LeftMouseHold() {
+    Node* topNode = nullptr;
+    m_nodes.foreach(
+        [&topNode] (Node& node) {
+            if (node.contains(g_mousePosition)) {
+                topNode = &node;
+            }
+        }
+    );
 
+    if (topNode == nullptr) {
+        g_worldOffset -= g_mouseDelta;
+    }
 }
     
 void Simulation::LeftMousePressed() {

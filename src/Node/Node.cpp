@@ -45,13 +45,14 @@ bool Node::contains(sf::Vector2i point) const {
 
 // Draws and handles culling
 void Node::Draw(sf::RenderTarget& target) const {
-    if (!isVisible({ 0.0f, 0.0f }, sf::Vector2f(target.getSize()))) return; // culling
+    if (!isVisible({ g_worldOffset.x, g_worldOffset.y }, sf::Vector2f(target.getSize().x + g_worldOffset.x, target.getSize().y + g_worldOffset.y))) return; // culling
 
     g_NodeSprite.setOutlineThickness(NODE_OUTLINE_THICKNESS);
     g_NodeSprite.setOutlineColor(sf::Color::Black);
     g_NodeSprite.setRadius(getRadius());
     g_NodeSprite.setFillColor(this->getState() ? sf::Color::Red : sf::Color::White);
     g_NodeSprite.setPosition(m_position - sf::Vector2f(getRadius(), getRadius()));
+    g_NodeSprite.move(g_worldOffset);
 
     target.draw(g_NodeSprite);
 }

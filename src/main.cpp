@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
-#include <math.h>
+#include <cmath>
 
 #include "Globals.hpp"
 #include "Input/Mouse.hpp"
@@ -22,7 +22,15 @@ int main() {
 
     g_mousePosition = sf::Mouse::getPosition(window);
 
+    sf::Texture backgroundTexture{};
+    backgroundTexture.loadFromFile("res\\background.png");
+    backgroundTexture.setRepeated(true);
+
+    sf::Sprite background{};
+    background.setTexture(backgroundTexture, true);
+
     while (window.isOpen()) {
+        g_mouseDelta = {};
         for (auto& [buttonType, button] : g_mouseButtons) {
             button.Update();
         }
@@ -48,13 +56,33 @@ int main() {
                 g_mouseButtons[event.mouseButton.button].OnRelease();
             }
             if (event.type == sf::Event::MouseMoved) {
-                g_mousePosition = sf::Mouse::getPosition(window);
+                sf::Vector2i newMousePosition = sf::Mouse::getPosition(window);
+                g_mouseDelta = sf::Vector2f(g_mousePosition - newMousePosition) * MOUSE_SENS;
+                g_mousePosition = newMousePosition;
             }
         }
 
         simulation.Update();
 
         window.clear(sf::Color(56, 56, 56));
+
+        sf::Vector2u windowSize = window.getSize();
+        
+        // Scale texture repeat inversely with viewport scale so grid zooms correctly
+        background.setTextureRect(sf::IntRect(
+            0,
+            0,
+            static_cast<int>(windowSize.x / (BACKGROUND_BASE_SCALE * g_ViewportScale)),
+            static_cast<int>(windowSize.y / (BACKGROUND_BASE_SCALE * g_ViewportScale))
+        ));
+        
+        background.setScale(
+            static_cast<float>(windowSize.x) / background.getLocalBounds().width  * (1.0f / g_ViewportScale) * g_ViewportScale,
+            static_cast<float>(windowSize.y) / background.getLocalBounds().height * (1.0f / g_ViewportScale) * g_ViewportScale
+        );
+        background.setPosition(0.f, 0.f);
+        background.move(g_worldOffset);
+        window.draw(background);
 
         simulation.Render(window);
 

@@ -7,3 +7,5 @@ MouseButtons_T g_mouseButtons{
     { sf::Mouse::Right, {} },
 };
 sf::Vector2i g_mousePosition{};
+sf::Vector2f g_worldOffset{};
+sf::Vector2f g_mouseDelta{};
