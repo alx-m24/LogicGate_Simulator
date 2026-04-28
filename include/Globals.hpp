@@ -1,9 +1,14 @@
 #pragma once
 
 #include <cstdint>
+#include <SFML/System/Vector2.hpp>
+
+#include "Input/Mouse.hpp"
 
 // === VARIABLE ===
 extern float g_ViewportScale;
+extern MouseButtons_T g_mouseButtons;
+extern sf::Vector2i g_mousePosition;
 
 // === CONSTANTS ===
 inline constexpr float ZOOM_SENSITIVIY = 0.125f;

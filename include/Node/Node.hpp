@@ -31,6 +31,9 @@ class Node {
     public:
         bool isVisible(const sf::Vector2f minBounds, const sf::Vector2f maxBounds) const;
 
+        bool contains(sf::Vector2f point) const;
+        bool contains(sf::Vector2i point) const;
+
         // Draws and handles culling
         void Draw(sf::RenderTarget& target) const;
 };

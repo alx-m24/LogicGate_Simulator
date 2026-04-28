@@ -26,4 +26,9 @@ class Simulation {
     public:
         void AddNode(Node&& node);
         void AddNode(const Node& node);
+
+    private:
+        void LeftMouseHold();
+        void LeftMousePressed();
+        void LeftMouseReleased();
 };

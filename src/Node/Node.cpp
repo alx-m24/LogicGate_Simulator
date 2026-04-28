@@ -1,4 +1,6 @@
 #include "Node/Node.hpp"
+
+#include "Maths/Maths.hpp"
 #include "Globals.hpp"
 
 #include <SFML/Graphics.hpp>
@@ -31,6 +33,14 @@ float Node::getRadius() {
 
 bool Node::isVisible(const sf::Vector2f minBounds, const sf::Vector2f maxBounds) const {
     return m_position.x > minBounds.x - getRadius() && m_position.y > minBounds.y - getRadius() && m_position.x < maxBounds.x + getRadius() && m_position.y < maxBounds.y + getRadius();
+}
+
+bool Node::contains(sf::Vector2f point) const {
+    return Distance(point, m_position) <= getRadius();
+}
+
+bool Node::contains(sf::Vector2i point) const { 
+    return this->contains(sf::Vector2f(point));
 }
 
 // Draws and handles culling

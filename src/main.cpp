@@ -1,7 +1,9 @@
 #include <SFML/Graphics.hpp>
+#include <unordered_map>
 #include <math.h>
 
 #include "Globals.hpp"
+#include "Input/Mouse.hpp"
 #include "Simulation/Simulation.hpp"
 
 int main() {
@@ -18,7 +20,13 @@ int main() {
     simulation.AddNode({ sf::Vector2f(window.getSize()) / 2.0f, false });
     simulation.AddNode({ sf::Vector2f(window.getSize().x, window.getSize().y / 2.0f) / 2.0f, true });
 
+    g_mousePosition = sf::Mouse::getPosition(window);
+
     while (window.isOpen()) {
+        for (auto& [buttonType, button] : g_mouseButtons) {
+            button.Update();
+        }
+
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
@@ -32,6 +40,15 @@ int main() {
                 // g_ViewportScale += event.mouseWheelScroll.delta * ZOOM_SENSITIVIY; // LINEAR Zoom
                 float factor = 1.0f + event.mouseWheelScroll.delta * ZOOM_SENSITIVIY;
                 g_ViewportScale *= factor;
+            }
+            if (event.type == sf::Event::MouseButtonPressed) {
+                g_mouseButtons[event.mouseButton.button].OnPress();
+            }
+            if (event.type == sf::Event::MouseButtonReleased) {
+                g_mouseButtons[event.mouseButton.button].OnRelease();
+            }
+            if (event.type == sf::Event::MouseMoved) {
+                g_mousePosition = sf::Mouse::getPosition(window);
             }
         }
 
