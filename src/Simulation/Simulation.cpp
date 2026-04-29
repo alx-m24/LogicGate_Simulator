@@ -32,7 +32,7 @@ void Simulation::Render(sf::RenderTarget& target) {
     std::vector<sf::Vector2f> nodePositions;
     m_nodes.foreach([&nodePositions](Node& node) {
                 if (nodePositions.size() % 2 == 0) node.setState(true);
-                nodePositions.push_back(node.getPosition());
+                nodePositions.push_back(node.getPosition() + g_worldOffset);
             });
 
     for (size_t i = 0; i < nodePositions.size(); i += 2) {
