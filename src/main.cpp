@@ -2,6 +2,7 @@
 #include <unordered_map>
 #include <cmath>
 
+#include "Wire/BezierCurve.hpp"
 #include "Globals.hpp"
 #include "Input/Mouse.hpp"
 #include "Background/Background.hpp"
@@ -20,6 +21,9 @@ int main() {
 
     simulation.AddNode({ sf::Vector2f(window.getSize()) / 2.0f, false });
     simulation.AddNode({ sf::Vector2f(window.getSize().x, window.getSize().y / 2.0f) / 2.0f, false });
+
+    simulation.AddNode({ sf::Vector2f(window.getSize().x / 2.0f, window.getSize().y / 2.0f) / 2.0f, false });
+    simulation.AddNode({ sf::Vector2f(window.getSize().x / 2.0f, window.getSize().y) / 2.0f, false });
 
     g_mousePosition = sf::Mouse::getPosition(window);
 

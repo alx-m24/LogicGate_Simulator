@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/System/Vector2.hpp>
+#include "Globals.hpp"
 
 class Moveable {
     protected:
@@ -17,6 +18,6 @@ class Moveable {
         }
 
         virtual sf::Vector2f getPosition() const {
-            return m_position;
+            return m_position + g_worldOffset;
         }
 };

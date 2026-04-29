@@ -1,6 +1,9 @@
 #include "Simulation/Simulation.hpp"
 
+#include <cmath>
+
 #include "Node/Node.hpp"
+#include "Wire/BezierCurve.hpp"
 #include "Input/Mouse.hpp"
 #include "Globals.hpp"
 
@@ -22,12 +25,33 @@ void Simulation::Update() {
     if (g_mouseButtons.at(sf::Mouse::Button::Right).startedPress()) RightMousePressed();
     if (g_mouseButtons.at(sf::Mouse::Button::Right).released()) RightMouseReleased();
 
-    if (m_beingHeld) m_beingHeld->held = true;
-
     m_lastTime = currentTime; 
 }
 
 void Simulation::Render(sf::RenderTarget& target) {
+    std::vector<sf::Vector2f> nodePositions;
+    m_nodes.foreach([&nodePositions](Node& node) {
+                if (nodePositions.size() % 2 == 0) node.setState(true);
+                nodePositions.push_back(node.getPosition());
+            });
+
+    for (size_t i = 0; i < nodePositions.size(); i += 2) {
+        BezierCurve curve(30, 5.0f * g_ViewportScale);
+        curve.SetPoints(
+                // P1
+                { nodePositions[i].x, nodePositions[i].y },
+                // P2
+                { nodePositions[i + 1].x, nodePositions[i + 1].y },
+                // C1
+                { nodePositions[i + 1].x, nodePositions[i].y },
+                // C2
+                { nodePositions[i].x, nodePositions[i + 1].y }
+                );
+        curve.SetColor(sf::Color::White, sf::Color::Red, std::fmod(m_clock.getElapsedTime().asSeconds(), 1.5f) / 1.0f);
+        
+        curve.Draw(target);
+    }
+
     m_nodes.foreach([&target](const Node& node) {
                 node.Draw(target); 
             });
@@ -57,6 +81,7 @@ void Simulation::LeftMousePressed() {
     if (!topHeld) return;
     
     m_beingHeld = topHeld;
+    m_beingHeld->held = true;
 }
 
 void Simulation::LeftMouseReleased() {
@@ -79,6 +104,7 @@ void Simulation::RightMousePressed() {
     if (!topHeld) return;
     
     m_beingHeld = topHeld;
+    m_beingHeld->held = true;
 }
 
 void Simulation::RightMouseReleased() {

@@ -11,6 +11,7 @@ add_executable(${PROJECT_NAME}
     src/main.cpp
     src/Globals.cpp
     src/Node/Node.cpp
+    src/Wire/BezierCurve.cpp
     src/Simulation/Simulation.cpp
     src/Background/Background.cpp
 )
