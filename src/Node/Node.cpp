@@ -7,14 +7,6 @@
 
 sf::CircleShape g_NodeSprite(BASE_RADIUS, NODE_RESOLUTION);
 
-sf::Vector2f Node::getPosition() const {
-    return m_position;
-}
-
-void Node::setPosition(sf::Vector2f position) {
-    m_position = position;
-}
-
 bool Node::getState() const {
     return m_state;
 }
@@ -56,6 +48,9 @@ void Node::Draw(sf::RenderTarget& target) const {
     g_NodeSprite.setOutlineColor(sf::Color::Black);
     g_NodeSprite.setRadius(getRadius());
     g_NodeSprite.setFillColor(this->getState() ? sf::Color::Red : sf::Color::White);
+    if (this->held) {
+        g_NodeSprite.setFillColor(MultColor(g_NodeSprite.getFillColor(), 0.5f));
+    }
     g_NodeSprite.setPosition(m_position - sf::Vector2f(getRadius(), getRadius()));
     g_NodeSprite.move(g_worldOffset);
 

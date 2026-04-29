@@ -12,6 +12,7 @@ add_executable(${PROJECT_NAME}
     src/Globals.cpp
     src/Node/Node.cpp
     src/Simulation/Simulation.cpp
+    src/Background/Background.cpp
 )
 
 # --- Dependencies ---

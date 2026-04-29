@@ -12,3 +12,7 @@ template<typename Rep = float>
 Rep Distance(sf::Vector2f a, sf::Vector2f b) {
     return Length(a - b);
 }
+
+inline sf::Color MultColor(sf::Color color, float factor) {
+    return sf::Color(color.r * factor, color.g * factor, color.b * factor); 
+}

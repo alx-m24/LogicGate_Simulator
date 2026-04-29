@@ -2,18 +2,16 @@
 
 #include <SFML/Graphics.hpp>
 
-class Node {
+#include "Moveable/Moveable.hpp"
+#include "Holdable/Holdable.hpp"
+
+class Node : public Moveable, public Holdable {
     public:
         Node() = default;
-        Node(sf::Vector2f position, bool state = false) : m_state(state), m_position(position) {}
+        Node(sf::Vector2f position, bool state = false) : Moveable(position), m_state(state) {}
 
     private:
         bool m_state = false;
-        sf::Vector2f m_position{};
-
-    public:
-        sf::Vector2f getPosition() const;
-        void setPosition(sf::Vector2f position);
 
     public:
         bool getState() const;

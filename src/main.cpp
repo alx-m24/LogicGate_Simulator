@@ -4,6 +4,7 @@
 
 #include "Globals.hpp"
 #include "Input/Mouse.hpp"
+#include "Background/Background.hpp"
 #include "Simulation/Simulation.hpp"
 
 int main() {
@@ -21,13 +22,6 @@ int main() {
     simulation.AddNode({ sf::Vector2f(window.getSize().x, window.getSize().y / 2.0f) / 2.0f, false });
 
     g_mousePosition = sf::Mouse::getPosition(window);
-
-    sf::Texture backgroundTexture{};
-    backgroundTexture.loadFromFile("res\\background.png");
-    backgroundTexture.setRepeated(true);
-
-    sf::Sprite background{};
-    background.setTexture(backgroundTexture, true);
 
     while (window.isOpen()) {
         g_mouseDelta = {};
@@ -65,26 +59,7 @@ int main() {
 
         simulation.Update();
 
-        window.clear(sf::Color(56, 56, 56));
-
-        sf::Vector2u windowSize = window.getSize();
-        
-        background.setTextureRect(sf::IntRect(
-            static_cast<int>(-g_worldOffset.x / (BACKGROUND_BASE_SCALE * g_ViewportScale)),
-            static_cast<int>(-g_worldOffset.y / (BACKGROUND_BASE_SCALE * g_ViewportScale)),
-            static_cast<int>(windowSize.x / (BACKGROUND_BASE_SCALE * g_ViewportScale)),
-            static_cast<int>(windowSize.y / (BACKGROUND_BASE_SCALE * g_ViewportScale))
-        ));
-        
-        background.setScale(
-            BACKGROUND_BASE_SCALE * g_ViewportScale,
-            BACKGROUND_BASE_SCALE * g_ViewportScale
-        );
-        
-        background.setPosition(0.f, 0.f);
-        
-        window.draw(background);
-
+        DrawBackground(window);
         simulation.Render(window);
 
         window.display();

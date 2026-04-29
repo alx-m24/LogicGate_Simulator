@@ -11,9 +11,11 @@ class Simulation {
         using NodeHandle = NodeStorage::Handle_T;
         NodeStorage m_nodes{};
 
-    public:
+    private:
         sf::Clock m_clock{};
         float m_lastTime{};
+
+        Holdable* m_beingHeld = nullptr;
 
     public:
         Simulation() = default;
@@ -31,4 +33,7 @@ class Simulation {
         void LeftMouseHold();
         void LeftMousePressed();
         void LeftMouseReleased();
+
+        void RightMousePressed();
+        void RightMouseReleased();
 };
