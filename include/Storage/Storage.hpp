@@ -2,6 +2,7 @@
 
 #include "Handle.hpp"
 
+#include <cassert>
 #include <vector>
 #include <cstdint>
 
@@ -84,9 +85,8 @@ class Storage {
         }
 
         T& get(const Handle_T& handle) {
-            if (isValid(handle)) {
-                return m_elements[handle.ID].second;
-            }
+            assert(isValid(handle));
+            return m_elements[handle.ID].second;
         }
 
         const T& operator[](const Handle_T& handle) const {
@@ -102,7 +102,7 @@ class Storage {
         void foreach(Func func) {
             for (auto& [handle, element] : m_elements) {
                 if (handle.isValid()) {
-                    func(element);
+                    func(handle, element);
                 }
             }
         }
@@ -111,7 +111,7 @@ class Storage {
         void foreach(Func func) const {
             for (const auto& [handle, element] : m_elements) {
                 if (handle.isValid()) {
-                    func(element);
+                    func(handle, element);
                 }
             }
         }

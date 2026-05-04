@@ -2,7 +2,6 @@
 #include <unordered_map>
 #include <cmath>
 
-#include "Wire/BezierCurve.hpp"
 #include "Globals.hpp"
 #include "Input/Mouse.hpp"
 #include "Background/Background.hpp"
