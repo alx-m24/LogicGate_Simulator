@@ -1,5 +1,9 @@
 # Logic Gate Simulator
 
+> [!WARNING]
+> The `master` branch is outdated and unsafe. While it successfully demonstrates the core and capabilities of the simulation, major design flaws makes the system fragile and prone to memory-leaks.
+> To solve these issues, a `rewrite` branch has been issued. The latter will now be worked on, keeping the problems encountered in `master` in mind.
+
 ![Preview Image](demo.png)  
 
 A **C++ logic circuit simulator** built with **ImGui** and **SFML**, designed for easy creation, testing, and management of digital logic circuits.  
