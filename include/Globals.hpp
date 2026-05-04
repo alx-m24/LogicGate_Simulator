@@ -19,4 +19,5 @@ inline constexpr float BACKGROUND_BASE_SCALE = 1 / 2.0f;
 inline constexpr float ZOOM_SENSITIVIY = 0.125f;
 inline constexpr float BASE_RADIUS = 25.0f;
 inline constexpr uint8_t NODE_RESOLUTION = 20u;
-inline constexpr float NODE_OUTLINE_THICKNESS = 5.0f;
+inline constexpr float NODE_OUTLINE_THICKNESS = 2.5f;
+inline constexpr float VISUAL_PROGRESS_RATE = 10.0f;

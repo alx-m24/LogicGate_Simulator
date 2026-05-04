@@ -16,8 +16,6 @@ class Wire {
 
         float m_lastViewportScale = g_ViewportScale;
 
-        static constexpr float VISUAL_PROGRESS_RATE = 10.0f;
-
     private:
         std::variant<Handle<Node>, int> m_input;
         std::variant<Handle<Node>, int> m_output;
